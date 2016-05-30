@@ -1,0 +1,127 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, mysql55conn, sqldb, db, FileUtil, Forms, Controls,
+  Graphics, Dialogs, DBGrids, StdCtrls;
+
+type
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    DataSource1: TDataSource;
+    DataSource2: TDataSource;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    MySQL55Connection1: TMySQL55Connection;
+    SQLQuery1: TSQLQuery;
+    SQLQuery2: TSQLQuery;
+    SQLTransaction1: TSQLTransaction;
+    SQLTransaction2: TSQLTransaction;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.lfm}
+
+{ TForm1 }
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  DBGrid2.Columns[4].Visible:=false;
+  DBGrid2.Columns[0].Visible:=false;
+  DBGrid1.Columns[0].Visible:=False;
+end;
+
+procedure TForm1.Label1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Label2Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var str: string;
+begin
+    SQLQuery1.Active:=false;
+    str := 'select * from koll WHERE family ="'+ Edit1.Text +'";';
+    SQLQuery1.SQL.Clear;
+    SQLQuery1.SQL.Add(str);
+    SQLTransaction1.Commit;
+    SQLQuery1.Active:=true;
+
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+    var str: string;
+begin
+    SQLQuery2.Active:=false;
+    str := 'select * from koll WHERE id_moneti ='+Edit2.Text+';';
+    SQLQuery2.SQL.Clear;
+    SQLQuery2.SQL.Add(str);
+    SQLTransaction1.Commit;
+    SQLQuery2.Active:=true;
+
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var str:string;
+begin
+    SQLQuery1.Active:=False;
+    SQLQuery2.Active:=false;
+    str := 'select * from moneti;';
+    SQLQuery2.SQL.Clear;
+    SQLQuery2.SQL.Add(str);
+    SQLTransaction2.Commit;
+    str := 'select * from koll;';
+    SQLQuery1.SQL.Clear;
+    SQLQuery1.SQL.Add(str);
+    SQLTransaction1.Commit;
+    SQLQuery1.Active:=true;
+    SQLQuery2.Active:=true;
+    DBGrid2.Columns[4].Visible:=false;
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+   var str: string;
+begin
+    SQLQuery2.Active:=false;
+    str := 'select * from moneti WHERE nominal ='+Edit3.Text+';';
+    SQLQuery2.SQL.Clear;
+    SQLQuery2.SQL.Add(str);
+    SQLTransaction1.Commit;
+    SQLQuery2.Active:=true;
+end;
+
+end.
+

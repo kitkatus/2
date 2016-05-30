@@ -1,0 +1,292 @@
+object Form1: TForm1
+  Left = 158
+  Height = 457
+  Top = 11
+  Width = 831
+  Caption = 'Form1'
+  ClientHeight = 457
+  ClientWidth = 831
+  OnCreate = FormCreate
+  LCLVersion = '1.2.6.0'
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 208
+    Top = 248
+    Width = 568
+    Align = alCustom
+    AutoAdvance = aaNone
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource2
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    TitleFont.CharSet = RUSSIAN_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    TitleFont.Style = [fsBold]
+  end
+  object DBGrid2: TDBGrid
+    Left = 0
+    Height = 248
+    Top = 0
+    Width = 831
+    AutoEdit = False
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    DefaultRowHeight = 18
+    FixedColor = clForm
+    FixedHotColor = clForm
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    TitleFont.CharSet = RUSSIAN_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    TitleFont.Style = [fsBold]
+  end
+  object Button1: TButton
+    Left = 744
+    Height = 25
+    Top = 264
+    Width = 75
+    Caption = 'Ввод'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Edit1: TEdit
+    Left = 584
+    Height = 21
+    Top = 268
+    Width = 136
+    TabOrder = 3
+  end
+  object Label1: TLabel
+    Left = 616
+    Height = 13
+    Top = 256
+    Width = 92
+    Caption = 'Поиск по фимилии'
+    ParentColor = False
+    OnClick = Label1Click
+  end
+  object Button2: TButton
+    Left = 744
+    Height = 25
+    Top = 310
+    Width = 75
+    Caption = 'Ввод'
+    OnClick = Button2Click
+    TabOrder = 4
+  end
+  object Edit2: TEdit
+    Left = 584
+    Height = 21
+    Top = 314
+    Width = 136
+    TabOrder = 5
+  end
+  object Label2: TLabel
+    Left = 608
+    Height = 13
+    Top = 296
+    Width = 96
+    Caption = 'Поиск по номиналу'
+    ParentColor = False
+    OnClick = Label2Click
+  end
+  object Button3: TButton
+    Left = 584
+    Height = 25
+    Top = 431
+    Width = 75
+    Caption = 'Назад'
+    OnClick = Button3Click
+    TabOrder = 6
+  end
+  object Button4: TButton
+    Left = 744
+    Height = 25
+    Top = 352
+    Width = 75
+    Caption = 'Button4'
+    OnClick = Button4Click
+    TabOrder = 7
+  end
+  object Label3: TLabel
+    Left = 640
+    Height = 13
+    Top = 344
+    Width = 31
+    Caption = 'Label3'
+    ParentColor = False
+  end
+  object Edit3: TEdit
+    Left = 584
+    Height = 21
+    Top = 356
+    Width = 136
+    TabOrder = 8
+    Text = 'Edit3'
+  end
+  object MySQL55Connection1: TMySQL55Connection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'kol'
+    KeepConnection = False
+    Password = 'ROOT'
+    Transaction = SQLTransaction1
+    UserName = 'root'
+    HostName = 'localhost'
+    LogEvents = []
+    left = 24
+    top = 272
+  end
+  object SQLQuery1: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id_koll'
+        DataType = ftAutoInc
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'strana'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'family'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'name'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'kontaki'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end    
+      item
+        Name = 'Nal_redkix_monet'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'id_moneti'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end>
+    Active = True
+    Database = MySQL55Connection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from koll;'
+    )
+    Params = <>
+    left = 80
+    top = 328
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Database = MySQL55Connection1
+    left = 136
+    top = 328
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 24
+    top = 328
+  end
+  object SQLQuery2: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id_moneti'
+        DataType = ftAutoInc
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'strana'
+        DataType = ftString
+        Precision = -1
+        Size = 30
+      end    
+      item
+        Name = 'nominal'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'god_vipuska'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'kol_vo'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'osobennosti'
+        DataType = ftString
+        Precision = -1
+        Size = 200
+      end>
+    Active = True
+    Database = MySQL55Connection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from moneti;'
+    )
+    Params = <>
+    left = 80
+    top = 384
+  end
+  object SQLTransaction2: TSQLTransaction
+    Active = True
+    Database = MySQL55Connection1
+    left = 136
+    top = 384
+  end
+  object DataSource2: TDataSource
+    DataSet = SQLQuery2
+    left = 24
+    top = 384
+  end
+end
